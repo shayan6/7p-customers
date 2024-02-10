@@ -51,6 +51,11 @@ $(function () {
   $("#dataForm").submit(function (e) {
     e.preventDefault();
     const formData = $(this).serialize();
+    const id = $('input[name$="ID"]').val();
+    if (id) {
+      return updateCustomer(formData);
+    }
+
     $.post(
       `${BASE_URL}?action=add_customer`,
       formData,
@@ -65,11 +70,9 @@ $(function () {
   });
 
   // Update Customer
-  $("#updateCustomerForm").submit(function (e) {
-    e.preventDefault();
-    const formData = $(this).serialize();
+  function updateCustomer (formData) {
     $.ajax({
-      url: BASE_URL,
+      url: `${BASE_URL}?action=update_customer`,
       type: "PUT",
       data: formData,
       success: function (response) {
@@ -78,11 +81,14 @@ $(function () {
       },
       dataType: "json",
     });
-  });
+
+    $('#modalForm').modal('hide');
+  };
 
   // edit from popup
   function editRow(id) {
     $('#modalForm').modal('show');
+    $('input[name$="ID"]').val(id);
     $('input[name$="FirstName"]').val($(`.row-${id} .col .row-FirstName`).text());
     $('input[name$="LastName"]').val($(`.row-${id} .col .row-LastName`).text());
     $('input[name$="Username"]').val($(`.row-${id} .col .row-Username`).text());

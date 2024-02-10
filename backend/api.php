@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
 
 
 // ************************************************************************************************************/
-// POST Customer Endpoint, required action param with (firstName || lastName || dateOfBirth || username || password)
+// POST Customer Endpoint, required action param with (firstName, lastName, dateOfBirth, username, password)
 // ************************************************************************************************************/
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'add_customer') {
     $firstName = isset($_POST['FirstName']) ? $_POST['FirstName'] : '';
@@ -43,24 +43,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['ac
     }
 }
 
-// Update Customer Endpoint
+// ************************************************************************************************************/
+// Update Customer Endpoint, required action param with (firstName, lastName, dateOfBirth, username, password)
+// ************************************************************************************************************/
 if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['action']) && $_GET['action'] === 'update_customer') {
     parse_str(file_get_contents("php://input"), $_PUT);
 
-    $id = $_PUT['id'];
-    $firstName = $_PUT['first_name'];
-    $lastName = $_PUT['last_name'];
-    $dateOfBirth = $_PUT['date_of_birth'];
-    $username = $_PUT['username'];
-    $password = $_PUT['password'];
+    $id = isset($_PUT['ID']) ? $_PUT['ID'] : '';
+    $firstName = isset($_PUT['FirstName']) ? $_PUT['FirstName'] : '';
+    $lastName = isset($_PUT['LastName']) ? $_PUT['LastName'] : '';
+    $dateOfBirth = isset($_PUT['DateOfBirth']) ? date('Y-m-d', strtotime($_PUT['DateOfBirth'])) : '';
+    $username = isset($_PUT['Username']) ? $_PUT['Username'] : '';
+    $password = isset($_PUT['Password']) ? md5($_PUT['Password']) : '';
 
     $result = $customerHandler->updateCustomer($id, $firstName, $lastName, $dateOfBirth, $username, $password);
-
     if ($result) {
-        // Customer updated successfully
         echo json_encode(array('message' => 'Customer updated successfully'));
     } else {
-        // Error updating customer
         echo json_encode(array('message' => 'Error updating customer'));
     }
 }
