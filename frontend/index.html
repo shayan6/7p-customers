@@ -20,22 +20,8 @@
   </head>
   <body>
     <div class="container-sm">
-      <div class="filter-bar text-right">
-        <div class="element-search autosuggest-search-activator">
-          <input placeholder="Start typing to search..." />
-        </div>
-        <button
-          type="button"
-          class="btn btn-sm btn-primary"
-          data-toggle="modal"
-          data-target="#modalForm"
-          onclick='addData()'
-        >
-          Add Data
-        </button>
-      </div>
       <div class="row">
-        <div class="col-sm-3 sorting-options">
+        <div class="col-sm-3 form-inline">
           <label for="sortField">Sort by:</label>
           <select class="form-control" id="sortField" onchange="applyFilters()">
             <option value="LastName">Last Name</option>
@@ -46,15 +32,15 @@
             <option value="UpdatedAt">UpdatedAt</option>
           </select>
         </div>
-        <div class="col-sm-3 sorting-options">
+        <div class="col-sm-3 form-inline">
           <label for="sortOrder">Order:</label>
           <select class="form-control" id="sortOrder" onchange="applyFilters()">
             <option value="ASC">Ascending</option>
             <option value="DESC">Descending</option>
           </select>
         </div>
-        <div class="col-sm-3 pagination-options">
-          <label for="perPage">Items per page:</label>
+        <div class="col-sm-2 form-inline">
+          <label for="perPage">Limit:</label>
           <select class="form-control" id="perPage" onchange="applyFilters()">
           <option value="10">10</option>
           <option value="20">20</option>
@@ -62,10 +48,23 @@
           <option value="100">100</option>
           </select>
         </div>
+        <div class="col-sm-4 form-inline">
+          <div class="filter-bar text-right">
+            <div class="element-search autosuggest-search-activator">
+              <input placeholder="Start typing to search..." />
+            </div>
+            <button
+              type="button"
+              class="btn btn-sm btn-primary"
+              data-toggle="modal"
+              data-target="#modalForm"
+              onclick='addData()'
+            >
+              Add Data
+            </button>
+          </div>
+        </div>
       </div>
-      <br/>
-      <br/>
-      <br/>
       <br/>
       <div class="container-fuild">
         <div id="loader" style="display:none;">

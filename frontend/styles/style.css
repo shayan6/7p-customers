@@ -135,6 +135,14 @@ label, select, select.form-control{
     border-radius: 50px;
 }
 
+.form-inline label {
+    margin-right: 1rem;
+}
+
+.form-inline select {
+    width: 60% !important;
+}
+
 /*upload file css*/
 .custom-file-uploader input[type='file'] {
   display: block;
