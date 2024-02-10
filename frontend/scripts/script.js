@@ -1,8 +1,9 @@
-$(function () {
-  const BASE_URL = "http://localhost/7pTestTask/backend/api.php";
+const BASE_URL = "http://localhost/7pTestTask/backend/api.php";
 
-  $("#datepicker").datepicker({ 
-    autoclose: true, 
+$(function () {
+
+  $("#datepicker").datepicker({
+    autoclose: true,
     todayHighlight: true
   }).datepicker('update', new Date());
 
@@ -10,6 +11,9 @@ $(function () {
   // Function to load customers data
   // ##################################################################
   function loadCustomers() {
+    // Show loader
+    $('#loader').show();
+
     $.get(`${BASE_URL}?action=get_all_customers`, function (response) {
       const data = JSON.parse(response);
       const dataHeading = [
@@ -26,6 +30,11 @@ $(function () {
       $("#row-thead").html($("#theadTmpl").render(dataHeading));
       $("#tbody").html($("#tbodyTmpl").render(data));
     });
+
+    // Hide loader after 0.5 second
+    setTimeout(function () {
+      $('#loader').hide();
+    }, 500);
   }
 
   // Load customers when the page is loaded
@@ -66,9 +75,9 @@ $(function () {
   // edit from popup
   function editRow(id) {
     $('#modalForm').modal('show');
-    $('input[name$="FirstName"]').val( $(`${id} .col .row-FirstName`).text() );
-    $('input[name$="LastName"]').val( $(`${id} .col .row-LastName`).text() );
-    $('input[name$="Username"]').val( $(`${id} .col .row-Username`).text() );
+    $('input[name$="FirstName"]').val($(`${id} .col .row-FirstName`).text());
+    $('input[name$="LastName"]').val($(`${id} .col .row-LastName`).text());
+    $('input[name$="Username"]').val($(`${id} .col .row-Username`).text());
     $("#datepicker").datepicker("setDate", $(`${id} .col .row-DateOfBirth`).text());
   }
 
@@ -102,3 +111,35 @@ $(function () {
   });
 
 });
+
+function applyFilters() {
+  // Gather selected options
+  var sortField = $("#sortField").val();
+  var sortOrder = $("#sortOrder").val();
+  var perPage = $("#perPage").val();
+  var filter = $(".element-search input").val().trim();
+
+  // Send AJAX request to backend API with selected filters
+  $.get(`${BASE_URL}?action=get_all_customers`, {
+    sort: sortField,
+    order: sortOrder,
+    per_page: perPage,
+    filter: filter
+  }, function (response) {
+    const data = JSON.parse(response);
+    const dataHeading = [
+      { headingName: "Image" },
+      { headingName: "FirstName" },
+      { headingName: "LastName" },
+      { headingName: "DateOfBirth" },
+      { headingName: "Username" },
+      { headingName: "CreatedAt" },
+      { headingName: "UpdatedAt" },
+      { headingName: "Status" },
+      { headingName: "Action" },
+    ];
+    Object.keys(data[0]).map((key) => ({ headingName: key }));
+    $("#row-thead").html($("#theadTmpl").render(dataHeading));
+    $("#tbody").html($("#tbodyTmpl").render(data));
+  });
+}
