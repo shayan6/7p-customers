@@ -7,6 +7,13 @@ $(function () {
     todayHighlight: true
   }).datepicker('update', new Date());
 
+  $(".element-search input").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".tbody .row").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
   // ##################################################################
   // Function to load customers data
   // ##################################################################
