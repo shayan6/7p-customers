@@ -149,3 +149,20 @@ label, select, select.form-control{
   opacity: 0;
   cursor: default;
 }
+
+#loader {    
+	overflow: hidden;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: white;
+}
+
+#loader img {
+    display: flex;
+    padding-top: 20%;
+    margin: auto;
+}

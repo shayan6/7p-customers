@@ -44,6 +44,9 @@ function editRow(id) {
 }
 
 function applyFilters() {
+  // Show loader
+  $('#loader').show();
+
   // Gather selected options
   var sortField = $("#sortField").val();
   var sortOrder = $("#sortOrder").val();
@@ -73,6 +76,11 @@ function applyFilters() {
       $("#row-thead").html($("#theadTmpl").render(dataHeading));
       $("#tbody").html($("#tbodyTmpl").render(data));
   });
+  
+  // Hide loader after 1 second
+    setTimeout(function() {
+      $('#loader').hide();
+  }, 500);
 }
 
 
