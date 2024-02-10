@@ -134,13 +134,11 @@ function addData () {
 }
 
 function applyFilters() {
-  // Gather selected options
   var sortField = $("#sortField").val();
   var sortOrder = $("#sortOrder").val();
   var perPage = $("#perPage").val();
   var filter = $(".element-search input").val().trim();
 
-  // Send AJAX request to backend API with selected filters
   $.get(`${BASE_URL}?action=get_all_customers`, {
     sort: sortField,
     order: sortOrder,
