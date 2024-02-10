@@ -48,12 +48,11 @@ $(function () {
   loadCustomers();
 
   // Add Customer
-  $("#modalForm").submit(function (e) {
+  $("#dataForm").submit(function (e) {
     e.preventDefault();
     const formData = $(this).serialize();
-    console.log(formData);
     $.post(
-      BASE_URL,
+      `${BASE_URL}?action=add_customer`,
       formData,
       function (response) {
         alert(response.message);
@@ -61,6 +60,8 @@ $(function () {
       },
       "json"
     );
+
+    $('#modalForm').modal('hide');
   });
 
   // Update Customer
@@ -85,6 +86,7 @@ $(function () {
     $('input[name$="FirstName"]').val($(`.row-${id} .col .row-FirstName`).text());
     $('input[name$="LastName"]').val($(`.row-${id} .col .row-LastName`).text());
     $('input[name$="Username"]').val($(`.row-${id} .col .row-Username`).text());
+    $('input[name$="Password"]').val($(`.row-${id} .col .row-Username`).text());
     $("#datepicker").datepicker("setDate", $(`.row-${id} .col .row-DateOfBirth`).text());
     $('#modalLabel').text('Edit data');
   }

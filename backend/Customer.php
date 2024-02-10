@@ -16,7 +16,7 @@ class CustomerHandler
         }
 
         $stmt = $this->db->prepare("INSERT INTO Customers (FirstName, LastName, DateOfBirth, Username, Password) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $firstName, $lastName, $dateOfBirth, $username, md5($password));
+        $stmt->bind_param("sssss", $firstName, $lastName, $dateOfBirth, $username, $password);
         $stmt->execute();
         $stmt->close();
 
@@ -25,7 +25,7 @@ class CustomerHandler
 
     public function updateCustomer($id, $firstName, $lastName, $dateOfBirth, $username, $password)
     {
-        if (empty($firstName) || empty($lastName) || empty($dateOfBirth) || empty($username) || empty($password)) {
+        if (empty($id) || empty($firstName) || empty($lastName) || empty($dateOfBirth) || empty($username) || empty($password)) {
             return false;
         }
 

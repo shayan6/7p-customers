@@ -27,12 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
 // ************************************************************************************************************/
 // POST Customer Endpoint, required action param with (firstName || lastName || dateOfBirth || username || password)
 // ************************************************************************************************************/
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_customer') {
-    $firstName = $_POST['first_name'];
-    $lastName = $_POST['last_name'];
-    $dateOfBirth = $_POST['date_of_birth'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'add_customer') {
+    $firstName = isset($_POST['FirstName']) ? $_POST['FirstName'] : '';
+    $lastName = isset($_POST['LastName']) ? $_POST['LastName'] : '';
+    $dateOfBirth = isset($_POST['DateOfBirth']) ? date('Y-m-d', strtotime($_POST['DateOfBirth'])) : '';
+    $username = isset($_POST['Username']) ? $_POST['Username'] : '';
+    $password = isset($_POST['Password']) ? md5($_POST['Password']) : '';
 
     $result = $customerHandler->addCustomer($firstName, $lastName, $dateOfBirth, $username, $password);
 
