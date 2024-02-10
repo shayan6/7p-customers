@@ -29,12 +29,11 @@
           class="btn btn-sm btn-primary"
           data-toggle="modal"
           data-target="#modalForm"
-          onclick='$("form")[0].reset()'
+          onclick='addData()'
         >
           Add Data
         </button>
       </div>
-
       <div class="row">
         <div class="col-sm-3 sorting-options">
           <label for="sortField">Sort by:</label>
@@ -54,7 +53,6 @@
             <option value="DESC">Descending</option>
           </select>
         </div>
-
         <div class="col-sm-3 pagination-options">
           <label for="perPage">Items per page:</label>
           <select class="form-control" id="perPage" onchange="applyFilters()">
@@ -94,7 +92,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+            <h5 class="modal-title" id="modalLabel">Add Data</h5>
             <button
               type="button"
               class="close"
@@ -190,7 +188,7 @@
 
   <!-- table body -->
   <script id="tbodyTmpl" type="text/html">
-    <div class="row justify-content-md-center" id="{{:ID}}">
+    <div class="row justify-content-md-center row-{{:ID}}" id="{{:ID}}">
       <div class="col">
     	<img class="row-profile" src="images/{{imageName:ID}}.png">
       </div>

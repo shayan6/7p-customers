@@ -82,10 +82,11 @@ $(function () {
   // edit from popup
   function editRow(id) {
     $('#modalForm').modal('show');
-    $('input[name$="FirstName"]').val($(`${id} .col .row-FirstName`).text());
-    $('input[name$="LastName"]').val($(`${id} .col .row-LastName`).text());
-    $('input[name$="Username"]').val($(`${id} .col .row-Username`).text());
-    $("#datepicker").datepicker("setDate", $(`${id} .col .row-DateOfBirth`).text());
+    $('input[name$="FirstName"]').val($(`.row-${id} .col .row-FirstName`).text());
+    $('input[name$="LastName"]').val($(`.row-${id} .col .row-LastName`).text());
+    $('input[name$="Username"]').val($(`.row-${id} .col .row-Username`).text());
+    $("#datepicker").datepicker("setDate", $(`.row-${id} .col .row-DateOfBirth`).text());
+    $('#modalLabel').text('Edit data');
   }
 
   // Delete Customer
@@ -118,6 +119,11 @@ $(function () {
   });
 
 });
+
+function addData () {
+  $("form")[0].reset();
+  $("#modalLabel").text("Add data");
+}
 
 function applyFilters() {
   // Gather selected options
