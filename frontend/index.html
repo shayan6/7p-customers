@@ -34,6 +34,40 @@
           Add Data
         </button>
       </div>
+
+      <div class="row">
+        <div class="col-sm-3 sorting-options">
+          <label for="sortField">Sort by:</label>
+          <select class="form-control" id="sortField" onchange="applyFilters()">
+            <option value="LastName">Last Name</option>
+            <option value="FirstName">First Name</option>
+            <option value="DateOfBirth">Date of Birth</option>
+            <option value="Username">Username</option>
+            <option value="CreatedAt">CreatedAt</option>
+            <option value="UpdatedAt">UpdatedAt</option>
+          </select>
+        </div>
+        <div class="col-sm-3 sorting-options">
+          <label for="sortOrder">Order:</label>
+          <select class="form-control" id="sortOrder" onchange="applyFilters()">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+          </select>
+        </div>
+
+		<div class="col-sm-3 pagination-options">
+		  <label for="perPage">Items per page:</label>
+		  <select class="form-control" id="perPage" onchange="applyFilters()">
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+		  </select>
+		</div>
+      </div>
+	  <br/>
+	  <br/>
+	  <br/>
       <div class="container-fuild">
         <div class="thead">
           <div class="row justify-content-md-center" id="row-thead">
@@ -142,28 +176,6 @@
   <script type="text/javascript" src="scripts/jsrender.js"></script>
   <script type="text/javascript" src="scripts/jsrender-converter.js"></script>
   <script type="text/javascript" src="scripts/script.js"></script>
-
-  <!-- handle events -->
-  <script type="text/javascript">
-    const BASE_URL = "http://localhost/7pTestTask/backend/api.php";
-    $.get(`${BASE_URL}?action=get_all_customers`, function (response) {
-      const data = JSON.parse(response);
-      const dataHeading = [
-        { headingName: "Image" },
-        { headingName: "FirstName" },
-        { headingName: "LastName" },
-        { headingName: "DateOfBirth" },
-        { headingName: "Username" },
-        { headingName: "CreatedAt" },
-        { headingName: "UpdatedAt" },
-        { headingName: "Status" },
-        { headingName: "Action" },
-      ];
-      Object.keys(data[0]).map((key) => ({ headingName: key }));
-      $("#row-thead").html($("#theadTmpl").render(dataHeading));
-      $("#tbody").html($("#tbodyTmpl").render(data));
-    });
-  </script>
 
   <!-- table heading -->
   <script id="theadTmpl" type="text/html">
