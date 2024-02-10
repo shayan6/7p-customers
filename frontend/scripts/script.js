@@ -16,12 +16,10 @@ $(function () {
 // edit from popup
 function editRow(id) {
   $('#modalForm').modal('show');
-  $('input[name$="name"]').val( $(`${id} .col .row-name`).text() );
-  $('input[name$="image"]').val( $(`${id} .col .row-profile`).attr('src') );
-  $("#datepicker").datepicker("setDate", $(`${id} .col .row-date`).text());
-  $('input[name$="category"]').val( $(`${id} .col .row-category`).text() );
-  $('input[name$="quantity"]').val( $(`${id} .col .row-quantity`).text() );
-  $('select[name$="unit"]').val( $(`${id} .col .row-unit`).text() );
+  $('input[name$="FirstName"]').val( $(`${id} .col .row-FirstName`).text() );
+  $('input[name$="LastName"]').val( $(`${id} .col .row-LastName`).text() );
+  $('input[name$="Username"]').val( $(`${id} .col .row-Username`).text() );
+  $("#datepicker").datepicker("setDate", $(`${id} .col .row-DateOfBirth`).text());
 }
 
 

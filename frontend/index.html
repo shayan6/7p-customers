@@ -1,165 +1,209 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Table Global</title>
-	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-	<div class="container-sm">
-		<div class="filter-bar text-right">
-			<div class="element-search autosuggest-search-activator"><input placeholder="Start typing to search..."></div>
-			<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalForm" onclick='$("form")[0].reset()'>
-			  Add Data
-			</button>
-		</div>
-		<div class="container-fuild">
-			<div class="thead">
-			  <div class="row justify-content-md-center" id="row-thead">
-				<!-- table headings render here -->
-			  </div>
-			</div>
-			<div class="tbody" id="tbody">
-				<!-- table body render here -->
-			</div>
-		</div>
-	</div>
-	<div class="modal fade bd-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	<form>
-	      		<div class="row">
-	      			<div class="col-sm-6">
-					  <div class="form-group">
-					    <input type="email" class="form-control" placeholder="Name" name="name">
-					  </div>
-					</div>
-	      			<div class="col-sm-6">
-					  <div class="form-group">
-				          <label for="file" class="sr-only">File</label>
-				          <div class="input-group .file-upload">
-				            <input type="text" class="form-control" placeholder="No file selected" name="image" readonly>
-				            <span class="input-group-btn">
-				              <div class="custom-file-uploader">
-				                <input type="file" name="file" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
-				              </div>
-				            </span>
-				          </div>
-				        </div>
-					</div>
-	      			<div class="col-sm-6">
-			            <div class="form-group">
-			                <div class='input-group date' id='datepicker' data-date-format='mm-dd-yyyy' name="date">
-			                    <input type='text' class="form-control" />
-			                    <span class="input-group-addon">
-			                        <span class="glyphicon glyphicon-calendar"></span>
-			                    </span>
-			                </div>
-			            </div>
-					</div>
-	      			<div class="col-sm-6">
-					  	<select class="form-control" id="exampleSelect1" name="unit">
-	                      <option value="">Unit</option>
-	                      <option value="1">1</option>
-	                      <option value="2">2</option>
-	                      <option value="3">3</option>
-	                      <option value="4">4</option>
-	                      <option value="5">5</option>
-	                      <option value="6">6</option>
-	                      <option value="7">7</option>
-	                      <option value="8">8</option>
-	                      <option value="9">9</option>
-	                      <option value="10">10</option>
-	                   	</select>
-					</div>
-	      			<div class="col-sm-6">
-					  <div class="form-group">
-					    <input type="number" class="form-control" placeholder="Quantity" name="quantity">
-					  </div>
-					</div>
-				</div>
-			</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-sm btn-primary">Submit</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>
-<script type="text/javascript" src="jsrender.js"></script>
-<script type="text/javascript" src="jsrender-converter.js"></script>
-<script type="text/javascript" src="script.js"></script>
+  <head>
+    <title>Table Global</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://bootswatch.com/4/materia/bootstrap.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container-sm">
+      <div class="filter-bar text-right">
+        <div class="element-search autosuggest-search-activator">
+          <input placeholder="Start typing to search..." />
+        </div>
+        <button
+          type="button"
+          class="btn btn-sm btn-primary"
+          data-toggle="modal"
+          data-target="#modalForm"
+          onclick='$("form")[0].reset()'
+        >
+          Add Data
+        </button>
+      </div>
+      <div class="container-fuild">
+        <div class="thead">
+          <div class="row justify-content-md-center" id="row-thead">
+            <!-- table headings render here -->
+          </div>
+        </div>
+        <div class="tbody" id="tbody">
+          <!-- table body render here -->
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade bd-example-modal-lg"
+      id="modalForm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="FirstName"
+                      name="FirstName"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="LastName"
+                      name="LastName"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Username"
+                      name="Username"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <div
+                      class="input-group date"
+                      id="datepicker"
+                      data-date-format="mm-dd-yyyy"
+                      name="date"
+                    >
+                      <input type="text" class="form-control" />
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-sm btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-sm btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+  <script
+    type="text/javascript"
+    src="https://momentjs.com/downloads/moment.js"
+  ></script>
+  <script type="text/javascript" src="scripts/jsrender.js"></script>
+  <script type="text/javascript" src="scripts/jsrender-converter.js"></script>
+  <script type="text/javascript" src="scripts/script.js"></script>
 
-<!-- handle events -->
-<script type="text/javascript">
-	const BASE_URL = 'http://localhost/7pTestTask/backend/api.php';
-	$.get(`${BASE_URL}?action=get_all_customers`, function (response) {
-		const data = JSON.parse(response);
-		let dataHeading = Object.keys(data[0]).map(key => ({ headingName: key }));
-		$("#row-thead").html( $("#theadTmpl").render(dataHeading) )
-		$("#tbody").html( $("#tbodyTmpl").render(data) )
-	});
-</script>
+  <!-- handle events -->
+  <script type="text/javascript">
+    const BASE_URL = "http://localhost/7pTestTask/backend/api.php";
+    $.get(`${BASE_URL}?action=get_all_customers`, function (response) {
+      const data = JSON.parse(response);
+      const dataHeading = [
+        { headingName: "Image" },
+        { headingName: "FirstName" },
+        { headingName: "LastName" },
+        { headingName: "DateOfBirth" },
+        { headingName: "Username" },
+        { headingName: "CreatedAt" },
+        { headingName: "UpdatedAt" },
+        { headingName: "Status" },
+        { headingName: "Action" },
+      ];
+      Object.keys(data[0]).map((key) => ({ headingName: key }));
+      $("#row-thead").html($("#theadTmpl").render(dataHeading));
+      $("#tbody").html($("#tbodyTmpl").render(data));
+    });
+  </script>
 
-<!-- table heading -->
-<script id="theadTmpl" type="text/html">
+  <!-- table heading -->
+  <script id="theadTmpl" type="text/html">
     <div class="col">
       <h6>{{:headingName}}</h6>
     </div>
-</script>
+  </script>
 
-<!-- table body -->
-<script id="tbodyTmpl" type="text/html">
-	<div class="row justify-content-md-center" id="row-{{:ID}}">
-	  <div class="col text-center">
-		<img class="row-profile" src="images/{{imageName:ID}}.png">
-	  </div>
-	  <div class="col">
-		<p class="row-name" >{{:FirstName}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-name" >{{:LastName}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-unit">{{:DateOfBirth}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-unit">{{:Username}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-unit">{{:Password}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-date">{{format:CreatedAt}}</p>
-		<p class="from-now">{{fromNow:CreatedAt}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-date">{{format:UpdatedAt}}</p>
-		<p class="from-now">{{fromNow:UpdatedAt}}</p>
-	  </div>
-	  <div class="col">
-		<p class="row-date">{{format:ArchiveAt}}</p>
-		<p class="from-now">{{fromNow:ArchiveAt}}</p>
-	  </div>
-	  <div class="col text-center">
-		<button type="button" class="btn btn-sm btn-warning btn-edit" onclick="editRow('#row-{{:id}}')"><i class="fa fa-pencil-square-o"></i></button>
-	  </div>
-	</div>
-</script>
+  <!-- table body -->
+  <script id="tbodyTmpl" type="text/html">
+    <div class="row justify-content-md-center" id="row-{{:ID}}">
+      <div class="col">
+    	<img class="row-profile" src="images/{{imageName:ID}}.png">
+      </div>
+      <div class="col">
+    	<p class="row-FirstName" >{{:FirstName}}</p>
+      </div>
+      <div class="col">
+    	<p class="row-LastName" >{{:LastName}}</p>
+      </div>
+      <div class="col">
+    	<p class="row-DateOfBirth">{{format:DateOfBirth}}</p>
+      </div>
+      <div class="col">
+    	<p class="row-Username">{{:Username}}</p>
+      </div>
+      <div class="col">
+    	<p class="row-date">{{format:CreatedAt}}</p>
+    	<p class="from-now">{{fromNow:CreatedAt}}</p>
+      </div>
+      <div class="col">
+    	<p class="row-date">{{format:UpdatedAt}}</p>
+    	<p class="from-now">{{fromNow:UpdatedAt}}</p>
+      </div>
+      <div class="col text-center">
+    	<span class="badge badge-{{statusColor:ArchivedAt}}">{{status:ArchivedAt}}</span>
+      </div>
+      <div class="col text-center">
+    	<button type="button" class="btn btn-sm btn-warning btn-edit" onclick="editRow('#row-{{:ID}}')"><i class="fa fa-pencil-square-o"></i></button>
+      </div>
+    </div>
+  </script>
 </html>
