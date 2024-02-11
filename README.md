@@ -1,5 +1,3 @@
-Below is a template for creating a proper README file for both the frontend and backend:
-
 ### Frontend README.md
 
 # Frontend Application
