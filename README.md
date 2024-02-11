@@ -100,10 +100,6 @@ Parameters:
 - `action=delete_customer`
 - Form data: id
 
-## License
+## Created by
 
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to customize these README files according to your specific project requirements and preferences.
+This project is created by Shayan Shaikh. Email: shayanshaikh996@gmail.com
