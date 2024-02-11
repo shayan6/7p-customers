@@ -31,6 +31,11 @@ This project contains the frontend application for interacting with the Customer
 3. **Deleting a Customer**: Click on the "Delete" button next to the customer you want to delete.
 4. **Viewing Customers**: Customers are displayed in a table format. You can sort the customers by clicking on the column headers. You can also filter the customers by typing in the search box.
 
+## Screenshots
+
+![Screenshot 1](/image.jpg)
+
+
 # Backend API
 
 This project contains the backend API for managing customers.
