@@ -1,5 +1,3 @@
-### Frontend README.md
-
 # Frontend Application
 
 This project contains the frontend application for interacting with the Customer API.
@@ -32,14 +30,6 @@ This project contains the frontend application for interacting with the Customer
 2. **Updating a Customer**: Click on the "Edit" button next to the customer you want to update. Update the customer information in the form and click the "Save Changes" button.
 3. **Deleting a Customer**: Click on the "Delete" button next to the customer you want to delete.
 4. **Viewing Customers**: Customers are displayed in a table format. You can sort the customers by clicking on the column headers. You can also filter the customers by typing in the search box.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-### Backend README.md
 
 # Backend API
 
