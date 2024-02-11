@@ -50,19 +50,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['action']) && $_GET['act
     parse_str(file_get_contents("php://input"), $_PUT);
 
     $id = isset($_PUT['ID']) ? $_PUT['ID'] : '';
-    $firstName = isset($_PUT['FirstName']) ? $_PUT['FirstName'] : '';
-    $lastName = isset($_PUT['LastName']) ? $_PUT['LastName'] : '';
-    $dateOfBirth = isset($_PUT['DateOfBirth']) ? date('Y-m-d', strtotime($_PUT['DateOfBirth'])) : '';
-    $username = isset($_PUT['Username']) ? $_PUT['Username'] : '';
-    $password = isset($_PUT['Password']) ? md5($_PUT['Password']) : '';
 
-    $result = $customerHandler->updateCustomer($id, $firstName, $lastName, $dateOfBirth, $username, $password);
+    if (!$id) {
+        echo json_encode(array('message' => 'Id not found'));
+    }
+    
+    $updateData = array();
+    if (isset($_PUT['FirstName'])) {
+        $updateData['FirstName'] = $_PUT['FirstName'];
+    }
+    if (isset($_PUT['LastName'])) {
+        $updateData['LastName'] = $_PUT['LastName'];
+    }
+    if (isset($_PUT['DateOfBirth'])) {
+        $updateData['DateOfBirth'] = date('Y-m-d', strtotime($_PUT['DateOfBirth']));
+    }
+    if (isset($_PUT['Username'])) {
+        $updateData['Username'] = $_PUT['Username'];
+    }
+    if (isset($_PUT['Password'])) {
+        $updateData['Password'] = md5($_PUT['Password']);
+    }
+
+    $result = $customerHandler->updateCustomer($id, $updateData);
     if ($result) {
         echo json_encode(array('message' => 'Customer updated successfully'));
     } else {
         echo json_encode(array('message' => 'Error updating customer'));
     }
 }
+
 
 // ************************************************************************************************************/
 // Delete Customer Endpoint

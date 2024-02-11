@@ -15,27 +15,43 @@ class CustomerHandler
             return false;
         }
 
-        $stmt = $this->db->prepare("INSERT INTO Customers (FirstName, LastName, DateOfBirth, Username, Password) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $firstName, $lastName, $dateOfBirth, $username, $password);
-        $stmt->execute();
-        $stmt->close();
+        $statement = $this->db->prepare("INSERT INTO Customers (FirstName, LastName, DateOfBirth, Username, Password) VALUES (?, ?, ?, ?, ?)");
+        $statement->bind_param("sssss", $firstName, $lastName, $dateOfBirth, $username, $password);
+        $statement->execute();
+        $statement->close();
 
         return true;
     }
 
-    public function updateCustomer($id, $firstName, $lastName, $dateOfBirth, $username, $password)
+    public function updateCustomer($id, $data)
     {
-        if (empty($id) || empty($firstName) || empty($lastName) || empty($dateOfBirth) || empty($username) || empty($password)) {
+
+        if (empty($id) || empty($data)) {
             return false;
         }
 
-        $stmt = $this->db->prepare("UPDATE Customers SET FirstName=?, LastName=?, DateOfBirth=?, Username=?, Password=? WHERE ID=?");
-        $stmt->bind_param("sssssi", $firstName, $lastName, $dateOfBirth, $username, $password, $id);
-        $stmt->execute();
-        $stmt->close();
+        // Construct the SQL query
+        $sql = "UPDATE Customers SET ";
+        $params = array();
 
-        return true;
+        foreach ($data as $field => $value) {
+            $sql .= "$field=?, ";
+            $params[] = $value;
+        }
+
+        
+        $sql = rtrim($sql, ", ");
+        $sql .= " WHERE ID=?";
+        $params[] = $id;
+        $statement = $this->db->prepare($sql);
+        $types = str_repeat('s', count($params) - 1) . 'i'; // All parameters are strings except the last one (ID)
+        $statement->bind_param($types, ...$params);
+        $success = $statement->execute();
+        $statement->close();
+        return $success;
     }
+
+
 
     public function getAllCustomers($pageNumber = 1, $perPage = 10, $sortField = 'CreatedAt', $sortOrder = 'DESC', $filter = '')
     {
@@ -64,10 +80,10 @@ class CustomerHandler
 
     public function deleteCustomer($id)
     {
-        $stmt = $this->db->prepare("DELETE FROM Customers WHERE ID=?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->close();
+        $statement = $this->db->prepare("DELETE FROM Customers WHERE ID=?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        $statement->close();
         return true;
     }
 }
